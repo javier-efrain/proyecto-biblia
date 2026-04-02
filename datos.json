@@ -1,1 +1,24 @@
-
+[
+  {
+    "id": "santiago-5-12",
+    "libro": "Santiago",
+    "color": "#2ecc71",
+    "titulo": "Santiago 5:12-20 | La integridad y la oración",
+    "hero_img": "https://images.unsplash.com/photo-1504052434139-441c9601d36d?q=80&w=1000&auto=format&fit=crop",
+    "contexto": {
+      "texto": "En el mundo antiguo, el sistema judicial era corrupto y la gente solía jurar por todo para ocultar mentiras. Santiago pide que la palabra del cristiano sea oro.",
+      "detalles": ["Judicial Corrupto", "Aceite como medicina", "Figura de Elías"]
+    },
+    "exegesis": {
+      "texto": "Santiago usa el término Horkyzete para prohibir muletillas religiosas. La oración eficaz (Energeitai) tiene poder real.",
+      "versiculos": [
+        {"cita": "5:12", "texto": "Que vuestro sí sea sí, y vuestro no sea no."},
+        {"cita": "5:17", "texto": "Elías era hombre sujeto a pasiones semejantes a las nuestras."}
+      ]
+    },
+    "aplicacion": {
+      "texto": "En tu trabajo en Premium Group, tu palabra debe ser ley. No lleves las cargas solo, activá la red de oración por Clara y Sofía.",
+      "pasos": ["La Regla del Sí", "Misión de Rescate"]
+    }
+  }
+]
