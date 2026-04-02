@@ -3,133 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biblia Interactiva | Estudio</title>
+    <title>Biblia Interactiva</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary: #2ecc71; /* Esto cambiará según el libro */
-            --bg: #121212;
-            --card: #1e1e1e;
-            --text: #e0e0e0;
-        }
-
-        body {
-            background-color: var(--bg);
-            color: var(--text);
-            font-family: 'Inter', sans-serif;
-            margin: 0;
-            line-height: 1.8;
-        }
-
-        /* Hero dinámico */
-        .hero {
-            height: 50vh;
-            background: linear-gradient(to bottom, rgba(18,18,18,0), var(--bg)), url('https://via.placeholder.com/1200x800') no-repeat center center;
-            background-size: cover;
-            display: flex;
-            align-items: flex-end;
-            padding: 40px 20px;
-        }
-
+        :root { --primary: #2ecc71; --bg: #121212; --card: #1e1e1e; --text: #e0e0e0; }
+        body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; margin: 0; line-height: 1.8; }
+        .hero { height: 45vh; background-size: cover; background-position: center; display: flex; align-items: flex-end; padding: 40px 20px; transition: 0.5s; }
         .container { max-width: 800px; margin: 0 auto; padding: 20px; }
-
-        .card {
-            background: var(--card);
-            border-radius: 15px;
-            padding: 30px;
-            margin-bottom: 25px;
-            border-left: 4px solid var(--primary);
-        }
-
-        /* Imágenes flexibles */
-        .img-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
-            margin: 20px 0;
-        }
-
-        .img-container img {
-            width: 100%;
-            border-radius: 8px;
-            border: 1px solid rgba(255,255,255,0.1);
-            transition: transform 0.3s;
-        }
-
-        .img-container img:hover { transform: scale(1.02); }
-
-        /* Estilo para el Griego */
-        .greek-box {
-            background: rgba(255,255,255,0.03);
-            padding: 10px;
-            border-radius: 5px;
-            display: inline-block;
-            margin: 5px;
-            border: 1px solid var(--primary);
-        }
-
-        .greek-word { color: var(--primary); font-weight: bold; }
-
-        /* Móviles */
-        @media (max-width: 600px) {
-            .hero { height: 35vh; }
-            h1 { font-size: 1.8rem; }
-            .card { padding: 20px; }
-        }
+        .card { background: var(--card); border-radius: 15px; padding: 30px; margin-bottom: 25px; border-left: 5px solid var(--primary); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        h1 { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin: 0; color: white; text-shadow: 2px 2px 10px rgba(0,0,0,0.8); }
+        .greek { color: var(--primary); font-weight: bold; background: rgba(255,255,255,0.05); padding: 2px 5px; border-radius: 4px; }
+        .verse { font-style: italic; border-left: 2px solid var(--primary); padding-left: 15px; margin: 15px 0; color: #fff; }
+        @media (max-width: 600px) { h1 { font-size: 1.8rem; } .hero { height: 35vh; } }
     </style>
 </head>
 <body>
 
-    <div id="app">
+    <div id="estudio-content">
         </div>
 
     <script>
-        // Aquí iría tu JSON (puedes pegarlo aquí mismo o cargarlo de un archivo)
-        const estudios = [
-            {
-                titulo: "Santiago 5:12-20",
-                libro: "Santiago",
-                color: "#2ecc71",
-                texto_contexto: "El sistema judicial era corrupto...",
-                imagenes_contexto: ["link-a-imagen-ia-1.jpg"],
-                exegesis: "Análisis profundo...",
-                griego: [{p: "Horkyzete", s: "Juréis"}],
-                devocional: "Aplicación para Premium Group..."
-            }
-        ];
-
-        // Función simple para mostrar el estudio (esto lo mejoraremos)
-        function renderEstudio(estudio) {
-            const app = document.getElementById('app');
-            document.documentElement.style.setProperty('--primary', estudio.color);
-            
-            app.innerHTML = `
-                <div class="hero">
+        // Esta función lee el archivo JSON que creamos
+        fetch('datos.json')
+            .then(response => response.json())
+            .then(data => {
+                const estudio = data[0]; // Por ahora cargamos el primero (Santiago)
+                document.documentElement.style.setProperty('--primary', estudio.color);
+                
+                const html = `
+                    <div class="hero" style="background-image: linear-gradient(to bottom, transparent, var(--bg)), url('${estudio.hero_img}')">
+                        <div class="container">
+                            <h1>${estudio.titulo}</h1>
+                        </div>
+                    </div>
                     <div class="container">
-                        <h1>${estudio.titulo}</h1>
-                    </div>
-                </div>
-                <div class="container">
-                    <div class="card">
-                        <h2>🏛️ Contexto</h2>
-                        <p>${estudio.texto_contexto}</p>
-                        <div class="img-container">
-                            ${estudio.imagenes_contexto.map(img => `<img src="${img}">`).join('')}
+                        <div class="card">
+                            <h2>🏛️ Contexto</h2>
+                            <p>${estudio.contexto.texto}</p>
+                        </div>
+                        <div class="card">
+                            <h2>🔍 Exégesis</h2>
+                            <p>${estudio.exegesis.texto}</p>
+                            ${estudio.exegesis.versiculos.map(v => `<div class="verse"><strong>${v.cita}:</strong> ${v.texto}</div>`).join('')}
+                        </div>
+                        <div class="card" style="border-color: #fff">
+                            <h2>💓 Aplicación</h2>
+                            <p>${estudio.aplicacion.texto}</p>
                         </div>
                     </div>
-                    <div class="card">
-                        <h2>🔍 Exégesis</h2>
-                        <p>${estudio.exegesis}</p>
-                        <div>
-                            ${estudio.griego.map(g => `<span class="greek-box"><span class="greek-word">${g.p}</span>: ${g.s}</span>`).join('')}
-                        </div>
-                    </div>
-                </div>
-            `;
-        }
-
-        // Cargar el primer estudio por defecto
-        renderEstudio(estudios[0]);
+                `;
+                document.getElementById('estudio-content').innerHTML = html;
+            });
     </script>
 </body>
 </html>
