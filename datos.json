@@ -5,10 +5,13 @@
     "color": "#2ecc71",
     "titulo": "Santiago 5:12-20 | La integridad y la oración",
     "hero_img": "img/santiago_5.png",
-    "contexto": {
-      "texto": "En el mundo antiguo, el sistema judicial era corrupto y la gente solía jurar por todo para ocultar mentiras. Santiago pide que la palabra del cristiano sea oro.",
-      "detalles": ["Judicial Corrupto", "Aceite como medicina", "Figura de Elías"]
-    },
+   "contexto": {
+  "texto": "En el mundo antiguo, el sistema judicial era corrupto y la gente solía jurar por todo para ocultar mentiras. Santiago pide que la palabra del cristiano sea oro.",
+  "galeria": [
+    { "url": "img/santiago_contexto_1.jpg", "caption": "Tribunal antiguo en el siglo I" },
+    { "url": "img/santiago_contexto_2.jpg", "caption": "Uso del aceite medicinal" }
+  ]
+},
     "exegesis": {
       "texto": "Santiago usa el término Horkyzete para prohibir muletillas religiosas. La oración eficaz (Energeitai) tiene poder real.",
       "versiculos": [
