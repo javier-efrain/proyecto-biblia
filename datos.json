@@ -12,13 +12,15 @@
     { "url": "img/santiago_contexto_2.jpg", "caption": "Uso del aceite medicinal" }
   ]
 },
-    "exegesis": {
-      "texto": "Santiago usa el término Horkyzete para prohibir muletillas religiosas. La oración eficaz (Energeitai) tiene poder real.",
-      "versiculos": [
-        {"cita": "5:12", "texto": "Que vuestro sí sea sí, y vuestro no sea no."},
-        {"cita": "5:17", "texto": "Elías era hombre sujeto a pasiones semejantes a las nuestras."}
-      ]
-    },
+   "exegesis": {
+    "texto": "Aquí va el análisis de los versículos...",
+    "versiculos": [
+      { "cita": "5:12", "texto": "..." }
+    ],
+    "galeria": [
+      { "url": "img/mapa_o_grafico.jpg", "caption": "Mapa del Templo" }
+    ]
+  },
     "aplicacion": {
       "texto": "En tu trabajo en Premium Group, tu palabra debe ser ley. No lleves las cargas solo, activá la red de oración por Clara y Sofía.",
       "pasos": ["La Regla del Sí", "Misión de Rescate"]
