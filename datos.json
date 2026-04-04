@@ -2,11 +2,11 @@
   {
     "id": "santiago-5-12",
     "libro": "Santiago",
-    "color": "#2ecc71",
     "categoria": "Nuevo Testamento",
+    "titulo": "Santiago 5:12-20 | La integridad y la oración",
+    "color": "#2ecc71",
     "temas": ["Oración", "Sanidad"],
     "estado": "completado"
-    "titulo": "Santiago 5:12-20 | La integridad y la oración",
     "hero_img": "img/santiago_5.png",
    "contexto": {
   "texto": "En el mundo antiguo, el sistema judicial era corrupto y la gente solía jurar por todo para ocultar mentiras. Santiago pide que la palabra del cristiano sea oro.",
