@@ -1,32 +1,65 @@
 [
   {
-    "id": "santiago-5-12",
+    "id": "jesus-01",
+    "libro": "Mateo",
+    "categoria": "Vida de Jesús",
+    "color": "#D32F2F",
+    "titulo": "La Limpieza del Templo",
+    "hero_img": "https://placehold.co/1280x720/282828/D32F2F?text=Jesús+en+el+Templo",
+    "contexto": {
+      "texto": "Jesús llega a Jerusalén y encuentra el área del templo convertida en un mercado. El celo por la casa de su Padre lo consume.",
+      "galeria": []
+    },
+    "exegesis": {
+      "texto": "El término usado para 'azote' sugiere una acción premeditada, no un ataque de ira descontrolada.",
+      "versiculos": [
+        { "cita": "Mateo 21:12", "texto": "Y entró Jesús en el templo de Dios, y echó fuera a todos los que vendían..." }
+      ]
+    },
+    "aplicacion": {
+      "texto": "¿Qué áreas de nuestro 'templo' interno necesitan una limpieza hoy?"
+    }
+  },
+  {
+    "id": "santiago-01",
     "libro": "Santiago",
     "categoria": "Nuevo Testamento",
-    "titulo": "Santiago 5:12-20 | La integridad y la oración",
     "color": "#2ecc71",
-    "temas": ["Oración", "Sanidad"],
-    "estado": "completado"
-    "hero_img": "img/santiago_5.png",
-   "contexto": {
-  "texto": "En el mundo antiguo, el sistema judicial era corrupto y la gente solía jurar por todo para ocultar mentiras. Santiago pide que la palabra del cristiano sea oro.",
-  "galeria": [
-    { "url": "img/santiago_4.png", "caption": "Tribunal antiguo en el siglo I" },
-    { "url": "img/santiago_5.png", "caption": "Uso del aceite medicinal" }
-  ]
-},
-   "exegesis": {
-    "texto": "Aquí va el análisis de los versículos...",
-    "versiculos": [
-      { "cita": "5:12", "texto": "..." }
-    ],
-    "galeria": [
-      { "url": "img/mapa_o_grafico.jpg", "caption": "Mapa del Templo" }
-    ]
-  },
+    "titulo": "Santiago 5:12-20 | La Integridad",
+    "hero_img": "https://placehold.co/1280x720/1a1a1a/2ecc71?text=Estudio+de+Santiago",
+    "contexto": {
+      "texto": "Santiago cierra su carta con consejos prácticos sobre la honestidad y la oración comunitaria.",
+      "galeria": []
+    },
+    "exegesis": {
+      "texto": "La unción con aceite representaba tanto el cuidado médico como la bendición espiritual.",
+      "versiculos": [
+        { "cita": "5:12", "texto": "Pero sobre todo... no juréis." }
+      ]
+    },
     "aplicacion": {
-      "texto": "En tu trabajo en Premium Group, tu palabra debe ser ley. No lleves las cargas solo, activá la red de oración por Clara y Sofía.",
-      "pasos": ["La Regla del Sí", "Misión de Rescate"]
+      "texto": "Que nuestro sí sea sí en el trabajo y en la familia."
+    }
+  },
+  {
+    "id": "corto-01",
+    "libro": "Filipenses",
+    "categoria": "Temas",
+    "color": "#3498db",
+    "titulo": "Filipenses 4:13 | Fortaleza Real",
+    "hero_img": "https://placehold.co/1280x720/1a1a1a/3498db?text=Todo+lo+puedo",
+    "contexto": {
+      "texto": "Pablo escribe desde la prisión, no desde un palacio, lo que le da un peso real a sus palabras.",
+      "galeria": []
+    },
+    "exegesis": {
+      "texto": "La clave es 'En Cristo', no en nuestra propia fuerza de voluntad.",
+      "versiculos": [
+        { "cita": "4:13", "texto": "Todo lo puedo en Cristo que me fortalece." }
+      ]
+    },
+    "aplicacion": {
+      "texto": "Un recordatorio para los momentos de agotamiento laboral o familiar."
     }
   }
 ]
