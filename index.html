@@ -6,211 +6,190 @@
     <title>Biblia Interactiva</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        :root { --primary: #2ecc71; --bg: #0f0f0f; --card: #1e1e1e; --text: #f0f0f0; }
-        
-        * { box-sizing: border-box; } /* Crucial para que los márgenes no rompan el ancho */
+        :root { --primary: #2ecc71; --bg: #0a0a0a; --card: #1a1a1a; --text: #f0f0f0; }
+        * { box-sizing: border-box; }
+        body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; margin: 0; overflow-x: hidden; }
 
-        body { 
-            background: var(--bg); color: var(--text); 
-            font-family: 'Inter', sans-serif; margin: 0; 
-            overflow-x: hidden; 
-        }
-
-        /* Menú Lateral y Botón */
+        /* Botón de Menú Circular (Para que no tape títulos) */
         .menu-btn { 
-            position: fixed; top: 15px; left: 15px; font-size: 24px; 
-            cursor: pointer; z-index: 2000; background: rgba(0,0,0,0.8); 
-            padding: 8px 12px; border-radius: 8px; color: white; 
-            border: 1px solid rgba(255,255,255,0.2); 
+            position: fixed; bottom: 20px; right: 20px; width: 60px; height: 60px;
+            background: var(--primary); color: black; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 30px; cursor: pointer; z-index: 3000;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.5); border: none;
         }
 
         .sidebar {
-            position: fixed; left: -280px; top: 0; width: 280px; height: 100%;
-            background: #181818; transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
-            z-index: 1500; padding: 80px 20px 20px; box-shadow: 10px 0 30px rgba(0,0,0,0.5);
+            position: fixed; right: -280px; top: 0; width: 280px; height: 100%;
+            background: #121212; transition: 0.4s ease; z-index: 2500; padding: 40px 20px;
+            box-shadow: -10px 0 30px rgba(0,0,0,0.5);
         }
-        .sidebar.active { left: 0; }
-        .sidebar a { 
-            display: block; color: white; text-decoration: none; 
-            padding: 15px 10px; border-radius: 8px; margin-bottom: 5px;
-            transition: 0.2s;
-        }
-        .sidebar a:hover { background: var(--card); color: var(--primary); }
+        .sidebar.active { right: 0; }
+        .sidebar a { display: block; color: white; text-decoration: none; padding: 15px; border-radius: 8px; margin-bottom: 10px; border-bottom: 1px solid #222; }
 
-        /* Banners (Home y Estudio) */
-        .hero-section {
-            width: 100%; height: 60vh; min-height: 400px;
-            background-color: #222; background-size: cover; background-position: center;
-            display: flex; align-items: flex-end; 
-            padding: 40px 50px; /* Margen generoso para que no lo tape el botón */
+        /* BANNER RESPONSIVO (Ajuste para Celular) */
+        .hero-container { width: 100%; position: relative; background: #111; }
+        .hero-img { 
+            width: 100%; height: 55vh; min-height: 300px;
+            background-size: cover; background-position: center;
+            display: flex; align-items: flex-end; padding: 30px;
             position: relative;
         }
-        .hero-section::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(to bottom, rgba(15,15,15,0.2), var(--bg));
+        .hero-img::after { 
+            content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 70%;
+            background: linear-gradient(to top, var(--bg), transparent);
         }
-        .hero-content { position: relative; z-index: 10; width: 100%; max-width: 900px; }
+        .hero-text { position: relative; z-index: 10; width: 100%; }
+        .hero-text h1 { font-family: 'Playfair Display'; font-size: clamp(1.5rem, 6vw, 3rem); margin: 0; line-height: 1.1; }
+        .badge { background: var(--primary); color: black; padding: 4px 10px; font-weight: 800; font-size: 0.7rem; border-radius: 3px; display: inline-block; margin-bottom: 10px; }
 
-        h1.main-title { 
-            font-family: 'Playfair Display', serif; 
-            font-size: clamp(1.5rem, 8vw, 3.2rem); 
-            margin: 0; line-height: 1.1; 
-        }
-        .sub-badge { 
-            display: inline-block; background: var(--primary); color: black; 
-            padding: 4px 12px; border-radius: 4px; font-weight: 800; 
-            font-size: 0.8rem; margin-bottom: 15px; text-transform: uppercase;
-        }
-
-        /* Contenedor de Contenido (Evita que el menú lateral lo tape) */
-        .main-wrapper { transition: 0.4s; width: 100%; }
+        /* FILAS ESTILO NETFLIX */
+        .row { padding: 20px 0; }
+        .row-header { padding: 0 25px; margin-bottom: 15px; }
+        .row-title { font-family: 'Playfair Display'; font-size: 1.5rem; border-left: 4px solid var(--primary); padding-left: 15px; }
         
-        .row { padding: 30px 0; margin-left: 50px; } /* Ajustado para que no se esconda */
-        .row-title { 
-            font-family: 'Playfair Display', serif; font-size: 1.6rem; 
-            margin-bottom: 20px; border-left: 5px solid var(--primary); padding-left: 15px; 
+        .scroll-wrapper { 
+            display: flex; overflow-x: auto; gap: 15px; padding: 10px 25px;
+            scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
         }
+        .scroll-wrapper::-webkit-scrollbar { display: none; }
 
-        .scroll-container { 
-            display: flex; overflow-x: auto; gap: 20px; padding: 10px 0; 
-            scroll-behavior: smooth; 
-        }
-        .scroll-container::-webkit-scrollbar { height: 5px; }
-        .scroll-container::-webkit-scrollbar-thumb { background: #444; border-radius: 10px; }
+        /* MINIATURAS */
+        .card-h { flex: 0 0 260px; aspect-ratio: 16/9; background: #222; border-radius: 10px; overflow: hidden; cursor: pointer; position: relative; transition: 0.3s; scroll-snap-align: start; }
+        .card-v { flex: 0 0 130px; aspect-ratio: 2/3; background: #1a1a1a; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; text-align: center; padding: 10px; font-weight: bold; font-size: 0.8rem; border: 1px solid #333; color: #555; }
+        .card-h img { width: 100%; height: 100%; object-fit: cover; }
+        .card-h .label { position: absolute; bottom: 0; width: 100%; padding: 10px; background: rgba(0,0,0,0.7); font-size: 0.8rem; }
+        
+        .lib-active { border-color: var(--primary) !important; color: var(--primary) !important; }
+        .locked { opacity: 0.2; filter: grayscale(1); cursor: default; }
 
-        /* Miniaturas */
-        .thumb-h { flex: 0 0 280px; aspect-ratio: 16/9; background: #222; border-radius: 12px; overflow: hidden; cursor: pointer; border: 1px solid rgba(255,255,255,0.1); position: relative; }
-        .thumb-v { flex: 0 0 140px; aspect-ratio: 2/3; background: #222; border-radius: 10px; cursor: pointer; display: flex; align-items: center; justify-content: center; text-align: center; padding: 15px; font-weight: bold; border: 2px solid transparent; color: #555; }
-        .thumb-h img { width: 100%; height: 100%; object-fit: cover; transition: 0.4s; }
-        .thumb-h:hover img { transform: scale(1.1); }
-        .label { position: absolute; bottom: 0; width: 100%; padding: 15px 10px 10px; background: linear-gradient(transparent, rgba(0,0,0,0.9)); font-size: 0.85rem; }
-
-        /* Estudio */
-        .study-body { max-width: 800px; margin: -50px auto 0; padding: 0 20px 100px; position: relative; z-index: 20; }
-        .card { background: var(--card); border-radius: 18px; padding: 35px; margin-bottom: 25px; border-left: 6px solid var(--primary); box-shadow: 0 15px 35px rgba(0,0,0,0.4); }
-        .verse { font-style: italic; border-left: 2px solid var(--primary); padding: 12px 20px; margin: 20px 0; background: rgba(255,255,255,0.03); border-radius: 0 8px 8px 0; }
+        /* VISTA LECTURA */
+        #view-study { display: none; }
+        .study-content { max-width: 800px; margin: -50px auto 0; padding: 0 20px 100px; position: relative; z-index: 100; }
+        .study-box { background: var(--card); border-radius: 15px; padding: 30px; margin-bottom: 20px; border-left: 5px solid var(--primary); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .verse-box { background: rgba(255,255,255,0.05); border-left: 2px solid var(--primary); padding: 15px; font-style: italic; margin: 15px 0; border-radius: 0 8px 8px 0; }
 
         @media (max-width: 600px) {
-            .hero-section { padding: 30px 25px; height: 50vh; }
-            .row { margin-left: 25px; }
-            .card { padding: 25px; }
+            .hero-img { height: 40vh; padding: 20px; }
+            .row-header { padding: 0 15px; }
+            .scroll-wrapper { padding: 10px 15px; }
+            .card-h { flex: 0 0 220px; }
         }
     </style>
 </head>
 <body>
 
-    <div class="menu-btn" onclick="toggleMenu()">☰</div>
+    <button class="menu-btn" onclick="toggleMenu()">☰</button>
 
     <nav class="sidebar" id="sidebar">
-        <h2 style="font-family: 'Playfair Display'; color: var(--primary); margin-bottom: 20px;">Menú</h2>
-        <a href="#" onclick="showHome()">🏠 Inicio</a>
+        <h2 style="font-family: 'Playfair Display'; color: var(--primary);">Biblia App</h2>
+        <a href="#" onclick="location.reload()">🏠 Inicio</a>
         <a href="#">📖 Vida de Jesús</a>
         <a href="#">📜 Nuevo Testamento</a>
-        <a href="#">⚡ Temas Temáticos</a>
     </nav>
 
-    <div id="main-wrapper" class="main-wrapper">
-        <div id="view-home">
-            <div class="hero-section" id="home-hero">
-                <div class="hero-content">
-                    <span class="sub-badge" id="home-sub">Destacado</span>
-                    <h1 class="main-title" id="home-title">Cargando...</h1>
+    <div id="home-screen">
+        <div class="hero-container">
+            <div class="hero-img" id="hero-bg">
+                <div class="hero-text">
+                    <span class="badge" id="hero-cat">Cargando</span>
+                    <h1 id="hero-title">...</h1>
                 </div>
-            </div>
-            <div class="row">
-                <h3 class="row-title">Novedades y Vida de Jesús</h3>
-                <div class="scroll-container" id="fila-novedades"></div>
-            </div>
-            <div class="row">
-                <h3 class="row-title">Biblioteca: Nuevo Testamento</h3>
-                <div class="scroll-container" id="fila-libros"></div>
             </div>
         </div>
 
-        <div id="view-estudio" style="display:none;">
-            <div id="study-render"></div>
+        <div class="row">
+            <div class="row-header"><h3 class="row-title">Novedades y Vida de Jesús</h3></div>
+            <div class="scroll-wrapper" id="row-novedades"></div>
+        </div>
+
+        <div class="row">
+            <div class="row-header"><h3 class="row-title">Biblioteca: Nuevo Testamento</h3></div>
+            <div class="scroll-wrapper" id="row-libros"></div>
+        </div>
+
+        <div class="row" id="container-temas">
+            <div class="row-header"><h3 class="row-title">Estudios Temáticos</h3></div>
+            <div class="scroll-wrapper" id="row-temas"></div>
         </div>
     </div>
 
+    <div id="view-study">
+        <div id="study-render"></div>
+    </div>
+
     <script>
-        let globalData = [];
+        let db = [];
 
         function toggleMenu() { document.getElementById('sidebar').classList.toggle('active'); }
 
-        function showHome() {
-            document.getElementById('view-home').style.display = 'block';
-            document.getElementById('view-estudio').style.display = 'none';
-            if(document.getElementById('sidebar').classList.contains('active')) toggleMenu();
+        function goHome() {
+            document.getElementById('home-screen').style.display = 'block';
+            document.getElementById('view-study').style.display = 'none';
             window.scrollTo(0,0);
         }
 
         function openEstudio(id) {
-            const est = globalData.find(e => e.id === id);
-            if(!est) return;
-
-            document.documentElement.style.setProperty('--primary', est.color);
-            const render = document.getElementById('study-render');
+            const e = db.find(item => item.id === id);
+            if(!e) return;
+            document.documentElement.style.setProperty('--primary', e.color);
             
-            render.innerHTML = `
-                <div class="hero-section" style="background-image: url('${est.hero_img}')">
-                    <div class="hero-content">
-                        <span class="sub-badge">${est.categoria}</span>
-                        <h1 class="main-title">${est.titulo}</h1>
+            document.getElementById('study-render').innerHTML = `
+                <div class="hero-img" style="background-image: url('${e.hero_img}'); height: 45vh;">
+                    <div class="hero-text" style="max-width:800px; margin:0 auto; padding: 0 20px;">
+                        <span class="badge">${e.categoria}</span>
+                        <h1>${e.titulo}</h1>
                     </div>
                 </div>
-                <div class="study-body">
-                    <div class="card">
-                        <h2 style="color:var(--primary); margin-top:0;">🏛️ Escenario</h2>
-                        <p>${est.contexto.texto}</p>
+                <div class="study-content">
+                    <div class="study-box"><h2>🏛️ Escenario</h2><p>${e.contexto.texto}</p></div>
+                    <div class="study-box"><h2>🔍 Exégesis</h2><p>${e.exegesis.texto}</p>
+                        ${e.exegesis.versiculos.map(v => `<div class="verse-box"><strong>${v.cita}:</strong> ${v.texto}</div>`).join('')}
                     </div>
-                    <div class="card">
-                        <h2 style="color:var(--primary); margin-top:0;">🔍 Exégesis</h2>
-                        <p>${est.exegesis.texto}</p>
-                        ${est.exegesis.versiculos.map(v => `<div class="verse"><strong>${v.cita}:</strong> ${v.texto}</div>`).join('')}
-                    </div>
-                    <div class="card">
-                        <h2 style="color:var(--primary); margin-top:0;">💓 Aterrizaje</h2>
-                        <p>${est.aplicacion.texto}</p>
-                    </div>
-                    <center><button onclick="showHome()" style="background:var(--primary); border:none; padding:15px 40px; border-radius:30px; font-weight:bold; cursor:pointer; margin-top:20px;">VOLVER AL INICIO</button></center>
+                    <div class="study-box"><h2>💓 Aterrizaje</h2><p>${e.aplicacion ? e.aplicacion.texto : e.application.texto}</p></div>
+                    <center><button onclick="goHome()" style="background:var(--primary); border:none; padding:15px 40px; border-radius:30px; font-weight:bold; cursor:pointer;">VOLVER AL INICIO</button></center>
                 </div>
             `;
-            document.getElementById('view-home').style.display = 'none';
-            document.getElementById('view-estudio').style.display = 'block';
+            document.getElementById('home-screen').style.display = 'none';
+            document.getElementById('view-study').style.display = 'block';
             window.scrollTo(0,0);
         }
 
-        // Cargar Libros (Estático)
-        const librosNT = [
-            { n: "Mateo", a: false }, { n: "Marcos", a: false }, { n: "Santiago", a: true, c: "#2ecc71", id: "santiago-01" }, { n: "Filemón", a: false }
+        // Libros Fijos
+        const nts = [
+            { n: "Mateo", a: false }, { n: "Marcos", a: false }, { n: "Lucas", a: false }, { n: "Juan", a: false },
+            { n: "Santiago", a: true, c: "#2ecc71", id: "santiago-01" }, { n: "Filemón", a: false }
         ];
 
-        const fLibros = document.getElementById('fila-libros');
-        librosNT.forEach(l => {
+        const fLibros = document.getElementById('row-libros');
+        nts.forEach(l => {
             const d = document.createElement('div');
-            d.className = `thumb-v ${l.a ? '' : 'disabled'}`;
-            if(l.a) { d.style.borderColor = l.c; d.style.color = l.c; d.onclick = () => openEstudio(l.id); }
+            d.className = `card-v ${l.a ? 'lib-active' : 'locked'}`;
+            if(l.a) { d.onclick = () => openEstudio(l.id); }
             d.innerHTML = l.n;
             fLibros.appendChild(d);
         });
 
-        // Cargar JSON
+        // Carga de JSON
         fetch('datos.json').then(r => r.json()).then(data => {
-            globalData = data;
-            const fNov = document.getElementById('fila-novedades');
-            
+            db = data;
+            const fNov = document.getElementById('row-novedades');
+            const fTem = document.getElementById('row-temas');
+
             data.forEach(e => {
-                const div = document.createElement('div');
-                div.className = 'thumb-h';
-                div.onclick = () => openEstudio(e.id);
-                div.innerHTML = `<img src="${e.hero_img}"><div class="label">${e.titulo}</div>`;
-                if(e.categoria === "Vida de Jesús") fNov.appendChild(div);
+                const card = document.createElement('div');
+                card.className = 'card-h';
+                card.onclick = () => openEstudio(e.id);
+                card.innerHTML = `<img src="${e.hero_img}"><div class="label">${e.titulo}</div>`;
+                
+                if(e.categoria === "Vida de Jesús") fNov.appendChild(card);
+                else fTem.appendChild(card);
             });
 
             if(data.length > 0) {
-                document.getElementById('home-hero').style.backgroundImage = `url('${data[0].hero_img}')`;
-                document.getElementById('home-title').innerText = data[0].titulo;
-                document.getElementById('home-sub').innerText = data[0].categoria;
+                document.getElementById('hero-bg').style.backgroundImage = `url('${data[0].hero_img}')`;
+                document.getElementById('hero-title').innerText = data[0].titulo;
+                document.getElementById('hero-cat').innerText = data[0].categoria;
             }
         });
     </script>
