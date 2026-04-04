@@ -1,25 +1,25 @@
 [
   {
-    "id": "jesus-01",
-    "libro": "Mateo",
-    "categoria": "Vida de Jesús",
-    "color": "#D32F2F",
-    "titulo": "La Limpieza del Templo",
-    "hero_img": "https://placehold.co/1280x720/282828/D32F2F?text=Jesús+en+el+Templo",
-    "contexto": {
-      "texto": "Jesús llega a Jerusalén y encuentra el área del templo convertida en un mercado. El celo por la casa de su Padre lo consume.",
-      "galeria": []
-    },
-    "exegesis": {
-      "texto": "El término usado para 'azote' sugiere una acción premeditada, no un ataque de ira descontrolada.",
-      "versiculos": [
-        { "cita": "Mateo 21:12", "texto": "Y entró Jesús en el templo de Dios, y echó fuera a todos los que vendían..." }
-      ]
-    },
-    "aplicacion": {
-      "texto": "¿Qué áreas de nuestro 'templo' interno necesitan una limpieza hoy?"
-    }
+  "id": "jesus-limpieza-templo",
+  "libro": "Mateo / Marcos / Lucas",
+  "categoria": "Vida de Jesús",
+  "color": "#D32F2F",
+  "titulo": "La Purificación del Templo",
+  "hero_img": "https://placehold.co/1280x720/282828/D32F2F?text=Jesús+y+el+Látigo",
+  "contexto": {
+    "texto": "Jesús entra al Templo por segunda vez en su ministerio. El sistema de sacrificios se había vuelto un negocio de cambio de moneda injusto que excluía a los gentiles del área de oración."
   },
+  "exegesis": {
+    "texto": "Jesús cita Isaías 56:7 ('Casa de oración') y Jeremías 7:11 ('Cueva de ladrones').",
+    "versiculos": [
+      { "cita": "Mateo 21:12", "texto": "Y entró Jesús en el templo de Dios, y echó fuera a todos los que vendían y compraban..." },
+      { "cita": "Isaías 56:7", "texto": "Porque mi casa será llamada casa de oración para todos los pueblos." }
+    ]
+  },
+  "aplicacion": {
+    "texto": "Nuestra vida es el templo del Espíritu. ¿Qué 'negocios' o distracciones están ocupando el lugar que le pertenece a Dios?"
+  }
+},
   {
     "id": "santiago-01",
     "libro": "Santiago",
