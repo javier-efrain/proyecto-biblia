@@ -3,58 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biblia Interactiva | Inicio</title>
+    <title>Biblia Interactiva</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root { --primary: #2ecc71; --bg: #0f0f0f; --card: #1e1e1e; --text: #f0f0f0; }
-        body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; margin: 0; overflow-x: hidden; }
+        
+        * { box-sizing: border-box; } /* Crucial para que los márgenes no rompan el ancho */
 
-        /* Menú Lateral */
+        body { 
+            background: var(--bg); color: var(--text); 
+            font-family: 'Inter', sans-serif; margin: 0; 
+            overflow-x: hidden; 
+        }
+
+        /* Menú Lateral y Botón */
+        .menu-btn { 
+            position: fixed; top: 15px; left: 15px; font-size: 24px; 
+            cursor: pointer; z-index: 2000; background: rgba(0,0,0,0.8); 
+            padding: 8px 12px; border-radius: 8px; color: white; 
+            border: 1px solid rgba(255,255,255,0.2); 
+        }
+
         .sidebar {
-            position: fixed; left: -250px; top: 0; width: 250px; height: 100%;
-            background: #181818; transition: 0.3s; z-index: 1000; padding: 20px;
+            position: fixed; left: -280px; top: 0; width: 280px; height: 100%;
+            background: #181818; transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
+            z-index: 1500; padding: 80px 20px 20px; box-shadow: 10px 0 30px rgba(0,0,0,0.5);
         }
         .sidebar.active { left: 0; }
-        .menu-btn { position: fixed; top: 15px; left: 15px; font-size: 24px; cursor: pointer; z-index: 1001; background: rgba(0,0,0,0.8); padding: 5px 12px; border-radius: 5px; color: white; border: 1px solid rgba(255,255,255,0.2); }
-        .sidebar a { display: block; color: white; text-decoration: none; padding: 15px 0; border-bottom: 1px solid #333; }
-
-        /* Banner Principal Responsivo */
-        .main-banner {
-            width: 100%; height: 65vh; background-color: #222; background-size: cover; background-position: center;
-            display: flex; align-items: flex-end; padding: 30px 50px; box-sizing: border-box;
+        .sidebar a { 
+            display: block; color: white; text-decoration: none; 
+            padding: 15px 10px; border-radius: 8px; margin-bottom: 5px;
+            transition: 0.2s;
         }
-        .banner-content { width: 100%; max-width: 800px; }
-        h1.banner-title { 
-            font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 5vw, 3rem); 
-            margin: 0; line-height: 1.2; text-shadow: 2px 2px 15px rgba(0,0,0,0.9);
-        }
-        p.banner-sub { color: var(--primary); font-weight: 600; margin-top: 10px; font-size: 1.1rem; }
+        .sidebar a:hover { background: var(--card); color: var(--primary); }
 
-        /* Filas de Contenido */
-        .row { padding: 25px 0; margin-left: 50px; }
-        .row-title { font-family: 'Playfair Display', serif; font-size: 1.6rem; margin-bottom: 15px; padding-left: 15px; border-left: 4px solid var(--primary); }
+        /* Banners (Home y Estudio) */
+        .hero-section {
+            width: 100%; height: 60vh; min-height: 400px;
+            background-color: #222; background-size: cover; background-position: center;
+            display: flex; align-items: flex-end; 
+            padding: 40px 50px; /* Margen generoso para que no lo tape el botón */
+            position: relative;
+        }
+        .hero-section::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to bottom, rgba(15,15,15,0.2), var(--bg));
+        }
+        .hero-content { position: relative; z-index: 10; width: 100%; max-width: 900px; }
+
+        h1.main-title { 
+            font-family: 'Playfair Display', serif; 
+            font-size: clamp(1.5rem, 8vw, 3.2rem); 
+            margin: 0; line-height: 1.1; 
+        }
+        .sub-badge { 
+            display: inline-block; background: var(--primary); color: black; 
+            padding: 4px 12px; border-radius: 4px; font-weight: 800; 
+            font-size: 0.8rem; margin-bottom: 15px; text-transform: uppercase;
+        }
+
+        /* Contenedor de Contenido (Evita que el menú lateral lo tape) */
+        .main-wrapper { transition: 0.4s; width: 100%; }
         
+        .row { padding: 30px 0; margin-left: 50px; } /* Ajustado para que no se esconda */
+        .row-title { 
+            font-family: 'Playfair Display', serif; font-size: 1.6rem; 
+            margin-bottom: 20px; border-left: 5px solid var(--primary); padding-left: 15px; 
+        }
+
         .scroll-container { 
             display: flex; overflow-x: auto; gap: 20px; padding: 10px 0; 
-            scroll-behavior: smooth; -webkit-overflow-scrolling: touch;
+            scroll-behavior: smooth; 
         }
-        /* Barra de scroll visible en PC para indicar movimiento */
-        .scroll-container::-webkit-scrollbar { height: 6px; }
-        .scroll-container::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
+        .scroll-container::-webkit-scrollbar { height: 5px; }
+        .scroll-container::-webkit-scrollbar-thumb { background: #444; border-radius: 10px; }
 
         /* Miniaturas */
-        .thumb-horizontal { flex: 0 0 280px; aspect-ratio: 16/9; background: #222; border-radius: 10px; overflow: hidden; cursor: pointer; transition: 0.3s; position: relative; border: 1px solid rgba(255,255,255,0.1); }
-        .thumb-vertical { flex: 0 0 150px; aspect-ratio: 2/3; background: #222; border-radius: 8px; cursor: pointer; border: 2px solid transparent; display: flex; align-items: center; justify-content: center; font-weight: bold; text-align: center; padding: 10px; font-size: 0.9rem; transition: 0.3s; color: #666; }
-        .thumb-horizontal img { width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
-        .thumb-horizontal:hover { transform: translateY(-5px); border-color: var(--primary); }
-        .disabled { filter: grayscale(1); opacity: 0.3; cursor: default; }
-        .thumb-label { position: absolute; bottom: 0; background: linear-gradient(transparent, rgba(0,0,0,0.9)); width: 100%; padding: 15px 10px 5px; font-size: 0.85rem; color: white; }
+        .thumb-h { flex: 0 0 280px; aspect-ratio: 16/9; background: #222; border-radius: 12px; overflow: hidden; cursor: pointer; border: 1px solid rgba(255,255,255,0.1); position: relative; }
+        .thumb-v { flex: 0 0 140px; aspect-ratio: 2/3; background: #222; border-radius: 10px; cursor: pointer; display: flex; align-items: center; justify-content: center; text-align: center; padding: 15px; font-weight: bold; border: 2px solid transparent; color: #555; }
+        .thumb-h img { width: 100%; height: 100%; object-fit: cover; transition: 0.4s; }
+        .thumb-h:hover img { transform: scale(1.1); }
+        .label { position: absolute; bottom: 0; width: 100%; padding: 15px 10px 10px; background: linear-gradient(transparent, rgba(0,0,0,0.9)); font-size: 0.85rem; }
 
-        /* VISTA DE ESTUDIO (Diseño limpio de lectura) */
-        #view-estudio { display: none; background: var(--bg); min-height: 100vh; }
-        .study-header { height: 40vh; background-size: cover; background-position: center; display: flex; align-items: flex-end; padding: 40px 20px; }
-        .study-card { background: var(--card); border-radius: 15px; padding: 30px; margin-bottom: 25px; border-left: 5px solid var(--primary); }
-        .verse { font-style: italic; border-left: 2px solid var(--primary); padding-left: 15px; margin: 15px 0; color: #fff; background: rgba(255,255,255,0.03); padding: 10px; }
+        /* Estudio */
+        .study-body { max-width: 800px; margin: -50px auto 0; padding: 0 20px 100px; position: relative; z-index: 20; }
+        .card { background: var(--card); border-radius: 18px; padding: 35px; margin-bottom: 25px; border-left: 6px solid var(--primary); box-shadow: 0 15px 35px rgba(0,0,0,0.4); }
+        .verse { font-style: italic; border-left: 2px solid var(--primary); padding: 12px 20px; margin: 20px 0; background: rgba(255,255,255,0.03); border-radius: 0 8px 8px 0; }
+
+        @media (max-width: 600px) {
+            .hero-section { padding: 30px 25px; height: 50vh; }
+            .row { margin-left: 25px; }
+            .card { padding: 25px; }
+        }
     </style>
 </head>
 <body>
@@ -62,22 +102,21 @@
     <div class="menu-btn" onclick="toggleMenu()">☰</div>
 
     <nav class="sidebar" id="sidebar">
-        <h2 style="font-family: 'Playfair Display'; color: var(--primary); padding-bottom: 10px; border-bottom: 2px solid #333;">Menú</h2>
+        <h2 style="font-family: 'Playfair Display'; color: var(--primary); margin-bottom: 20px;">Menú</h2>
         <a href="#" onclick="showHome()">🏠 Inicio</a>
-        <a href="#" onclick="toggleMenu()">📖 Vida de Jesús</a>
-        <a href="#" onclick="toggleMenu()">📜 Nuevo Testamento</a>
-        <a href="#" onclick="toggleMenu()">⚡ Temas</a>
+        <a href="#">📖 Vida de Jesús</a>
+        <a href="#">📜 Nuevo Testamento</a>
+        <a href="#">⚡ Temas Temáticos</a>
     </nav>
 
-    <div id="view-home">
-        <div class="main-banner" id="main-banner">
-            <div class="banner-content">
-                <h1 id="banner-titulo" class="banner-title">Cargando...</h1>
-                <p id="banner-subtitulo" class="banner-sub"></p>
+    <div id="main-wrapper" class="main-wrapper">
+        <div id="view-home">
+            <div class="hero-section" id="home-hero">
+                <div class="hero-content">
+                    <span class="sub-badge" id="home-sub">Destacado</span>
+                    <h1 class="main-title" id="home-title">Cargando...</h1>
+                </div>
             </div>
-        </div>
-
-        <div class="content-body">
             <div class="row">
                 <h3 class="row-title">Novedades y Vida de Jesús</h3>
                 <div class="scroll-container" id="fila-novedades"></div>
@@ -86,17 +125,10 @@
                 <h3 class="row-title">Biblioteca: Nuevo Testamento</h3>
                 <div class="scroll-container" id="fila-libros"></div>
             </div>
-            <div class="row">
-                <h3 class="row-title">Estudios Temáticos</h3>
-                <div class="scroll-container" id="fila-temas"></div>
-            </div>
         </div>
-    </div>
 
-    <div id="view-estudio">
-        <div id="study-content"></div>
-        <div class="container" style="text-align: center; padding-bottom: 50px;">
-            <button onclick="showHome()" style="background: var(--primary); border: none; padding: 12px 30px; border-radius: 25px; color: black; font-weight: bold; cursor: pointer;">← Volver al Inicio</button>
+        <div id="view-estudio" style="display:none;">
+            <div id="study-render"></div>
         </div>
     </div>
 
@@ -104,12 +136,12 @@
         let globalData = [];
 
         function toggleMenu() { document.getElementById('sidebar').classList.toggle('active'); }
-        
-        function showHome() { 
+
+        function showHome() {
             document.getElementById('view-home').style.display = 'block';
             document.getElementById('view-estudio').style.display = 'none';
-            window.scrollTo(0,0);
             if(document.getElementById('sidebar').classList.contains('active')) toggleMenu();
+            window.scrollTo(0,0);
         }
 
         function openEstudio(id) {
@@ -117,28 +149,30 @@
             if(!est) return;
 
             document.documentElement.style.setProperty('--primary', est.color);
-            const content = document.getElementById('study-content');
+            const render = document.getElementById('study-render');
             
-            content.innerHTML = `
-                <div class="study-header" style="background-image: linear-gradient(to bottom, transparent, var(--bg)), url('${est.hero_img}')">
-                    <div style="max-width: 800px; margin: 0 auto; width: 100%; padding: 0 20px;">
-                        <h1 style="font-family: 'Playfair Display'; font-size: 2.5rem; margin:0;">${est.titulo}</h1>
+            render.innerHTML = `
+                <div class="hero-section" style="background-image: url('${est.hero_img}')">
+                    <div class="hero-content">
+                        <span class="sub-badge">${est.categoria}</span>
+                        <h1 class="main-title">${est.titulo}</h1>
                     </div>
                 </div>
-                <div style="max-width: 800px; margin: 0 auto; padding: 20px;">
-                    <div class="study-card">
-                        <h2 style="color:var(--primary)">🏛️ Escenario</h2>
+                <div class="study-body">
+                    <div class="card">
+                        <h2 style="color:var(--primary); margin-top:0;">🏛️ Escenario</h2>
                         <p>${est.contexto.texto}</p>
                     </div>
-                    <div class="study-card">
-                        <h2 style="color:var(--primary)">🔍 Exégesis</h2>
+                    <div class="card">
+                        <h2 style="color:var(--primary); margin-top:0;">🔍 Exégesis</h2>
                         <p>${est.exegesis.texto}</p>
                         ${est.exegesis.versiculos.map(v => `<div class="verse"><strong>${v.cita}:</strong> ${v.texto}</div>`).join('')}
                     </div>
-                    <div class="study-card">
-                        <h2 style="color:var(--primary)">💓 Aterrizaje</h2>
+                    <div class="card">
+                        <h2 style="color:var(--primary); margin-top:0;">💓 Aterrizaje</h2>
                         <p>${est.aplicacion.texto}</p>
                     </div>
+                    <center><button onclick="showHome()" style="background:var(--primary); border:none; padding:15px 40px; border-radius:30px; font-weight:bold; cursor:pointer; margin-top:20px;">VOLVER AL INICIO</button></center>
                 </div>
             `;
             document.getElementById('view-home').style.display = 'none';
@@ -146,50 +180,39 @@
             window.scrollTo(0,0);
         }
 
+        // Cargar Libros (Estático)
         const librosNT = [
-            { n: "Mateo", a: false }, { n: "Marcos", a: false }, { n: "Lucas", a: false }, { n: "Juan", a: false },
-            { n: "Santiago", a: true, c: "#2ecc71", id: "santiago-01" }, { n: "Filemón", a: false }
+            { n: "Mateo", a: false }, { n: "Marcos", a: false }, { n: "Santiago", a: true, c: "#2ecc71", id: "santiago-01" }, { n: "Filemón", a: false }
         ];
 
         const fLibros = document.getElementById('fila-libros');
         librosNT.forEach(l => {
             const d = document.createElement('div');
-            d.className = `thumb-vertical ${l.a ? '' : 'disabled'}`;
-            if(l.a) { 
-                d.style.borderColor = l.c; d.style.color = l.c; 
-                d.onclick = () => openEstudio(l.id);
-            }
+            d.className = `thumb-v ${l.a ? '' : 'disabled'}`;
+            if(l.a) { d.style.borderColor = l.c; d.style.color = l.c; d.onclick = () => openEstudio(l.id); }
             d.innerHTML = l.n;
             fLibros.appendChild(d);
         });
 
-        fetch('datos.json')
-            .then(res => res.json())
-            .then(data => {
-                globalData = data;
-                const fNovedades = document.getElementById('fila-novedades');
-                const fTemas = document.getElementById('fila-temas');
-
-                data.forEach(estudio => {
-                    const thumb = document.createElement('div');
-                    thumb.className = 'thumb-horizontal';
-                    thumb.onclick = () => openEstudio(estudio.id);
-                    thumb.innerHTML = `
-                        <img src="${estudio.hero_img}" alt="${estudio.titulo}">
-                        <div class="thumb-label">${estudio.titulo}</div>
-                    `;
-                    
-                    if(estudio.categoria === "Vida de Jesús") fNovedades.appendChild(thumb);
-                    else fTemas.appendChild(thumb);
-                });
-
-                if(data.length > 0) {
-                    const desc = data[0];
-                    document.getElementById('main-banner').style.backgroundImage = `linear-gradient(to bottom, transparent, #0f0f0f), url('${desc.hero_img}')`;
-                    document.getElementById('banner-titulo').innerText = desc.titulo;
-                    document.getElementById('banner-subtitulo').innerText = desc.categoria;
-                }
+        // Cargar JSON
+        fetch('datos.json').then(r => r.json()).then(data => {
+            globalData = data;
+            const fNov = document.getElementById('fila-novedades');
+            
+            data.forEach(e => {
+                const div = document.createElement('div');
+                div.className = 'thumb-h';
+                div.onclick = () => openEstudio(e.id);
+                div.innerHTML = `<img src="${e.hero_img}"><div class="label">${e.titulo}</div>`;
+                if(e.categoria === "Vida de Jesús") fNov.appendChild(div);
             });
+
+            if(data.length > 0) {
+                document.getElementById('home-hero').style.backgroundImage = `url('${data[0].hero_img}')`;
+                document.getElementById('home-title').innerText = data[0].titulo;
+                document.getElementById('home-sub').innerText = data[0].categoria;
+            }
+        });
     </script>
 </body>
 </html>
