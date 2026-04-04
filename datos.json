@@ -3,6 +3,9 @@
     "id": "santiago-5-12",
     "libro": "Santiago",
     "color": "#2ecc71",
+    "categoria": "Nuevo Testamento",
+    "temas": ["Oración", "Sanidad"],
+    "estado": "completado"
     "titulo": "Santiago 5:12-20 | La integridad y la oración",
     "hero_img": "img/santiago_5.png",
    "contexto": {
