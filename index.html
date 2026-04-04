@@ -15,39 +15,46 @@
             background: #181818; transition: 0.3s; z-index: 1000; padding: 20px;
         }
         .sidebar.active { left: 0; }
-        .menu-btn { position: fixed; top: 15px; left: 15px; font-size: 24px; cursor: pointer; z-index: 1001; background: rgba(0,0,0,0.7); padding: 5px 12px; border-radius: 5px; color: white; border: 1px solid rgba(255,255,255,0.2); }
+        .menu-btn { position: fixed; top: 15px; left: 15px; font-size: 24px; cursor: pointer; z-index: 1001; background: rgba(0,0,0,0.8); padding: 5px 12px; border-radius: 5px; color: white; border: 1px solid rgba(255,255,255,0.2); }
         .sidebar a { display: block; color: white; text-decoration: none; padding: 15px 0; border-bottom: 1px solid #333; }
 
-        /* Banner Principal (Hero) */
+        /* Banner Principal Responsivo */
         .main-banner {
-            width: 100%;
-            height: 65vh;
-            background: linear-gradient(to bottom, transparent, var(--bg)), url('https://via.placeholder.com/1200x600/1a1a1a/ffffff?text=Cargando+Banner...');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: flex-end;
-            padding: 40px;
-            box-sizing: border-box;
+            width: 100%; height: 65vh; background-color: #222; background-size: cover; background-position: center;
+            display: flex; align-items: flex-end; padding: 30px 50px; box-sizing: border-box;
         }
+        .banner-content { width: 100%; max-width: 800px; }
+        h1.banner-title { 
+            font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 5vw, 3rem); 
+            margin: 0; line-height: 1.2; text-shadow: 2px 2px 15px rgba(0,0,0,0.9);
+        }
+        p.banner-sub { color: var(--primary); font-weight: 600; margin-top: 10px; font-size: 1.1rem; }
 
-        /* Ajuste de márgenes para que nada quede tapado */
-        .content-body { padding-top: 20px; }
-        .row { padding: 20px 0; margin-left: 50px; } /* Movido a la derecha */
-        .row-title { font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 15px; padding-left: 15px; border-left: 4px solid var(--primary); }
+        /* Filas de Contenido */
+        .row { padding: 25px 0; margin-left: 50px; }
+        .row-title { font-family: 'Playfair Display', serif; font-size: 1.6rem; margin-bottom: 15px; padding-left: 15px; border-left: 4px solid var(--primary); }
         
-        .scroll-container { display: flex; overflow-x: auto; gap: 15px; padding: 10px 0; scroll-behavior: smooth; }
-        .scroll-container::-webkit-scrollbar { display: none; }
+        .scroll-container { 
+            display: flex; overflow-x: auto; gap: 20px; padding: 10px 0; 
+            scroll-behavior: smooth; -webkit-overflow-scrolling: touch;
+        }
+        /* Barra de scroll visible en PC para indicar movimiento */
+        .scroll-container::-webkit-scrollbar { height: 6px; }
+        .scroll-container::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
 
         /* Miniaturas */
-        .thumb-horizontal { flex: 0 0 280px; aspect-ratio: 16/9; background: #222; border-radius: 8px; overflow: hidden; cursor: pointer; transition: 0.3s; position: relative; }
-        .thumb-vertical { flex: 0 0 150px; aspect-ratio: 2/3; background: #222; border-radius: 6px; cursor: pointer; border: 2px solid transparent; display: flex; align-items: center; justify-content: center; font-weight: bold; text-align: center; padding: 10px; }
-        .thumb-horizontal img { width: 100%; height: 100%; object-fit: cover; }
-        .thumb-horizontal:hover { transform: scale(1.05); }
-        .disabled { filter: grayscale(1); opacity: 0.4; cursor: not-allowed; }
+        .thumb-horizontal { flex: 0 0 280px; aspect-ratio: 16/9; background: #222; border-radius: 10px; overflow: hidden; cursor: pointer; transition: 0.3s; position: relative; border: 1px solid rgba(255,255,255,0.1); }
+        .thumb-vertical { flex: 0 0 150px; aspect-ratio: 2/3; background: #222; border-radius: 8px; cursor: pointer; border: 2px solid transparent; display: flex; align-items: center; justify-content: center; font-weight: bold; text-align: center; padding: 10px; font-size: 0.9rem; transition: 0.3s; color: #666; }
+        .thumb-horizontal img { width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
+        .thumb-horizontal:hover { transform: translateY(-5px); border-color: var(--primary); }
+        .disabled { filter: grayscale(1); opacity: 0.3; cursor: default; }
+        .thumb-label { position: absolute; bottom: 0; background: linear-gradient(transparent, rgba(0,0,0,0.9)); width: 100%; padding: 15px 10px 5px; font-size: 0.85rem; color: white; }
 
-        /* Vista de Estudio (Oculta) */
-        #view-estudio { display: none; padding-top: 60px; }
+        /* VISTA DE ESTUDIO (Diseño limpio de lectura) */
+        #view-estudio { display: none; background: var(--bg); min-height: 100vh; }
+        .study-header { height: 40vh; background-size: cover; background-position: center; display: flex; align-items: flex-end; padding: 40px 20px; }
+        .study-card { background: var(--card); border-radius: 15px; padding: 30px; margin-bottom: 25px; border-left: 5px solid var(--primary); }
+        .verse { font-style: italic; border-left: 2px solid var(--primary); padding-left: 15px; margin: 15px 0; color: #fff; background: rgba(255,255,255,0.03); padding: 10px; }
     </style>
 </head>
 <body>
@@ -55,18 +62,18 @@
     <div class="menu-btn" onclick="toggleMenu()">☰</div>
 
     <nav class="sidebar" id="sidebar">
-        <h2 style="font-family: 'Playfair Display'; color: var(--primary);">Biblia App</h2>
-        <a href="#" onclick="location.reload()">🏠 Inicio</a>
-        <a href="#">📖 Vida de Jesús</a>
-        <a href="#">📜 Nuevo Testamento</a>
-        <a href="#">⚡ Temas</a>
+        <h2 style="font-family: 'Playfair Display'; color: var(--primary); padding-bottom: 10px; border-bottom: 2px solid #333;">Menú</h2>
+        <a href="#" onclick="showHome()">🏠 Inicio</a>
+        <a href="#" onclick="toggleMenu()">📖 Vida de Jesús</a>
+        <a href="#" onclick="toggleMenu()">📜 Nuevo Testamento</a>
+        <a href="#" onclick="toggleMenu()">⚡ Temas</a>
     </nav>
 
     <div id="view-home">
         <div class="main-banner" id="main-banner">
-            <div>
-                <h1 style="font-family: 'Playfair Display'; font-size: 2.5rem; margin:0;">La Vida de Jesús</h1>
-                <p style="color: var(--primary); font-weight: bold;">Estudio Cronológico Armonizado</p>
+            <div class="banner-content">
+                <h1 id="banner-titulo" class="banner-title">Cargando...</h1>
+                <p id="banner-subtitulo" class="banner-sub"></p>
             </div>
         </div>
 
@@ -75,12 +82,10 @@
                 <h3 class="row-title">Novedades y Vida de Jesús</h3>
                 <div class="scroll-container" id="fila-novedades"></div>
             </div>
-
             <div class="row">
                 <h3 class="row-title">Biblioteca: Nuevo Testamento</h3>
                 <div class="scroll-container" id="fila-libros"></div>
             </div>
-
             <div class="row">
                 <h3 class="row-title">Estudios Temáticos</h3>
                 <div class="scroll-container" id="fila-temas"></div>
@@ -88,54 +93,101 @@
         </div>
     </div>
 
+    <div id="view-estudio">
+        <div id="study-content"></div>
+        <div class="container" style="text-align: center; padding-bottom: 50px;">
+            <button onclick="showHome()" style="background: var(--primary); border: none; padding: 12px 30px; border-radius: 25px; color: black; font-weight: bold; cursor: pointer;">← Volver al Inicio</button>
+        </div>
+    </div>
+
     <script>
+        let globalData = [];
+
         function toggleMenu() { document.getElementById('sidebar').classList.toggle('active'); }
+        
+        function showHome() { 
+            document.getElementById('view-home').style.display = 'block';
+            document.getElementById('view-estudio').style.display = 'none';
+            window.scrollTo(0,0);
+            if(document.getElementById('sidebar').classList.contains('active')) toggleMenu();
+        }
+
+        function openEstudio(id) {
+            const est = globalData.find(e => e.id === id);
+            if(!est) return;
+
+            document.documentElement.style.setProperty('--primary', est.color);
+            const content = document.getElementById('study-content');
+            
+            content.innerHTML = `
+                <div class="study-header" style="background-image: linear-gradient(to bottom, transparent, var(--bg)), url('${est.hero_img}')">
+                    <div style="max-width: 800px; margin: 0 auto; width: 100%; padding: 0 20px;">
+                        <h1 style="font-family: 'Playfair Display'; font-size: 2.5rem; margin:0;">${est.titulo}</h1>
+                    </div>
+                </div>
+                <div style="max-width: 800px; margin: 0 auto; padding: 20px;">
+                    <div class="study-card">
+                        <h2 style="color:var(--primary)">🏛️ Escenario</h2>
+                        <p>${est.contexto.texto}</p>
+                    </div>
+                    <div class="study-card">
+                        <h2 style="color:var(--primary)">🔍 Exégesis</h2>
+                        <p>${est.exegesis.texto}</p>
+                        ${est.exegesis.versiculos.map(v => `<div class="verse"><strong>${v.cita}:</strong> ${v.texto}</div>`).join('')}
+                    </div>
+                    <div class="study-card">
+                        <h2 style="color:var(--primary)">💓 Aterrizaje</h2>
+                        <p>${est.aplicacion.texto}</p>
+                    </div>
+                </div>
+            `;
+            document.getElementById('view-home').style.display = 'none';
+            document.getElementById('view-estudio').style.display = 'block';
+            window.scrollTo(0,0);
+        }
 
         const librosNT = [
             { n: "Mateo", a: false }, { n: "Marcos", a: false }, { n: "Lucas", a: false }, { n: "Juan", a: false },
-            { n: "Hechos", a: false }, { n: "Romanos", a: false }, { n: "1 Cor", a: false }, { n: "2 Cor", a: false },
-            { n: "Gálatas", a: false }, { n: "Efesios", a: false }, { n: "Filipenses", a: false }, { n: "Colosenses", a: false },
-            { n: "Santiago", a: true, c: "#2ecc71" }, { n: "Filemón", a: true, c: "#3498db" }
+            { n: "Santiago", a: true, c: "#2ecc71", id: "santiago-01" }, { n: "Filemón", a: false }
         ];
 
-        // Cargar Libros NT
         const fLibros = document.getElementById('fila-libros');
         librosNT.forEach(l => {
             const d = document.createElement('div');
             d.className = `thumb-vertical ${l.a ? '' : 'disabled'}`;
-            if(l.a) d.style.borderColor = l.c;
+            if(l.a) { 
+                d.style.borderColor = l.c; d.style.color = l.c; 
+                d.onclick = () => openEstudio(l.id);
+            }
             d.innerHTML = l.n;
             fLibros.appendChild(d);
         });
 
-        // Cargar Datos desde el JSON
         fetch('datos.json')
             .then(res => res.json())
             .then(data => {
+                globalData = data;
                 const fNovedades = document.getElementById('fila-novedades');
                 const fTemas = document.getElementById('fila-temas');
 
                 data.forEach(estudio => {
                     const thumb = document.createElement('div');
                     thumb.className = 'thumb-horizontal';
+                    thumb.onclick = () => openEstudio(estudio.id);
                     thumb.innerHTML = `
                         <img src="${estudio.hero_img}" alt="${estudio.titulo}">
-                        <div style="position:absolute; bottom:0; padding:10px; background:rgba(0,0,0,0.6); width:100%; font-size:0.8rem;">
-                            ${estudio.titulo}
-                        </div>
+                        <div class="thumb-label">${estudio.titulo}</div>
                     `;
                     
-                    // Separar por categoría (Si no tiene categoría, va a Temas por defecto)
-                    if(estudio.categoria === "Vida de Jesús" || estudio.categoria === "Novedades") {
-                        fNovedades.appendChild(thumb);
-                    } else {
-                        fTemas.appendChild(thumb);
-                    }
+                    if(estudio.categoria === "Vida de Jesús") fNovedades.appendChild(thumb);
+                    else fTemas.appendChild(thumb);
                 });
 
-                // Actualizar Banner con el último estudio
                 if(data.length > 0) {
-                    document.getElementById('main-banner').style.backgroundImage = `linear-gradient(to bottom, transparent, #0f0f0f), url('${data[0].hero_img}')`;
+                    const desc = data[0];
+                    document.getElementById('main-banner').style.backgroundImage = `linear-gradient(to bottom, transparent, #0f0f0f), url('${desc.hero_img}')`;
+                    document.getElementById('banner-titulo').innerText = desc.titulo;
+                    document.getElementById('banner-subtitulo').innerText = desc.categoria;
                 }
             });
     </script>
