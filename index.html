@@ -112,7 +112,12 @@
             <div class="row-header"><h3 class="row-title">Estudios Temáticos</h3></div>
             <div class="scroll-wrapper" id="row-temas"></div>
         </div>
-    </div>
+
+        <div class="row">
+            <div class="row-header"><h3 class="row-title">Línea de Tiempo: Semana Santa</h3></div>
+            <div id="timeline-container" style="display: flex; flex-direction: column; gap: 10px; padding: 0 25px;"></div>
+        </div>
+    </div> 
 
     <div id="view-study">
         <div id="study-render"></div>
@@ -170,6 +175,36 @@
             fLibros.appendChild(d);
         });
 
+        // Nueva función para cargar la línea de tiempo
+    fetch('semana-santa.json')
+        .then(res => res.json())
+        .then(eventos => {
+            const container = document.getElementById('timeline-container');
+            eventos.forEach(ev => {
+                const punto = document.createElement('div');
+                punto.style = `
+                    display: flex; 
+                    align-items: center; 
+                    background: #1a1a1a; 
+                    padding: 15px; 
+                    border-radius: 8px; 
+                    border-left: 4px solid var(--primary);
+                    cursor: pointer;
+                    transition: 0.3s;
+                `;
+                punto.innerHTML = `
+                    <div style="min-width: 120px; font-size: 0.8rem; color: #888;">
+                        <b>${ev.dia}</b><br>${ev.hora}
+                    </div>
+                    <div style="flex-grow: 1; font-weight: bold;">${ev.titulo}</div>
+                    <div style="color: var(--primary);">➔</div>
+                `;
+                punto.onclick = () => openEstudio(ev.estudio_id);
+                container.appendChild(punto);
+            });
+        });
+
+        
         // Carga de JSON
         fetch('datos.json').then(r => r.json()).then(data => {
             db = data;
