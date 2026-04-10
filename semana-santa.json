@@ -1,0 +1,30 @@
+[
+  {
+    "id": "entrada-triunfal",
+    "titulo": "Entrada Triunfal en Jerusalén",
+    "dia": "Domingo 9 de Nisán",
+    "hora": "Mañana",
+    "estudio_id": "estudio-entrada-triunfal"
+  },
+  {
+    "id": "higuera-maldecida",
+    "titulo": "La Higuera Maldecida",
+    "dia": "Lunes 10 de Nisán",
+    "hora": "Mañana",
+    "estudio_id": "estudio-higuera"
+  },
+  {
+    "id": "purificacion-templo",
+    "titulo": "Segunda Purificación del Templo",
+    "dia": "Lunes 10 de Nisán",
+    "hora": "Tarde",
+    "estudio_id": "labradores-malvados"
+  },
+  {
+    "id": "tributo-cesar",
+    "titulo": "La pregunta sobre el tributo",
+    "dia": "Martes 11 de Nisán",
+    "hora": "Mañana",
+    "estudio_id": "tributo-cesar"
+  }
+]
