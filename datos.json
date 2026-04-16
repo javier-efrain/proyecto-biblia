@@ -17,8 +17,41 @@
     "html_personalizado": "<div style='display:grid; gap:15px; margin-top:10px;'> <div style='background:#1e1e1e; padding:15px; border-radius:10px; border-left:4px solid #f1c40f;'> <h3 style='margin:0; color:#f1c40f;'>1. βίος (bíos) – Vida</h3> <p style='font-size:0.9rem; color:#ccc;'>No es dinero sobrante, es la <b>materia misma de la vida</b>. Dio su latido.</p> </div> <div style='background:#1e1e1e; padding:15px; border-radius:10px; border-left:4px solid #e74c3c;'> <h3 style='margin:0; color:#e74c3c;'>2. περίσσευμα (perísseuma) – Lo que sobra</h3> <p style='font-size:0.9rem; color:#ccc;'>Describe el <b>excedente</b>. Los ricos dieron lo que no les dolía perder.</p> </div> </div> <div style='background:rgba(241,196,15,0.1); padding:15px; border-radius:10px; border: 1px dashed #f1c40f; margin-top:20px;'><strong>💡 Dato del Mentor:</strong> Algunas monedas eran 'impuras' por sus inscripciones. Jesús ignora el ritualismo para exaltar la entrega total del corazón.</div>"
   },
   "aplicacion": {
-    "texto": "Nuestra vida es el templo del Espíritu. ¿Qué 'negocios' o distracciones están ocupando el lugar que le pertenece a Dios?"
-  }
+  "texto": "<b>Verdad Central:</b> Dios no mide la ofrenda por la cantidad, sino por lo que te cuesta. La verdadera adoración no se calcula desde el excedente, sino desde la vida misma (bíos).<br><br><b>Punto de Tensión:</b> ¿Estamos dispuestos a dar hasta que duela, sin que nadie lo sepa, confiando solo en que Dios nos ve?",
+  "html_personalizado": "
+    <div style='background:#1a1a1a; padding:20px; border-radius:15px; border: 1px solid #333; margin-top:20px;'>
+      <h3 style='color:var(--primary); margin-top:0;'>📝 Examen del Corazón</h3>
+      <ul style='padding-left:20px; color:#ccc; line-height:1.6;'>
+        <li>¿Qué has dado esta semana que realmente te haya costado (tiempo, orgullo, sueño)?</li>
+        <li>¿Necesitas que alguien sepa cuando das? ¿Te duele pasar desapercibido?</li>
+        <li>¿Retienes tu 'poco' por miedo a quedarte con nada?</li>
+      </ul>
+    </div>
+
+    <div style='margin-top:25px;'>
+      <h3 style='color:#5dade2;'>🚀 Pasos Prácticos</h3>
+      <div style='display:grid; gap:12px;'>
+        <div style='background:rgba(93,173,226,0.1); padding:12px; border-radius:8px; border-left:3px solid #5dade2;'>
+          <b>1. La ofrenda invisible:</b> Da 10 min de intercesión por un vecino en secreto.
+        </div>
+        <div style='background:rgba(93,173,226,0.1); padding:12px; border-radius:8px; border-left:3px solid #5dade2;'>
+          <b>2. Auditoría de excedente:</b> Identifica qué das que NO te cuesta y sustitúyelo por algo que SÍ.
+        </div>
+        <div style='background:rgba(93,173,226,0.1); padding:12px; border-radius:8px; border-left:3px solid #5dade2;'>
+          <b>3. El ejercicio del leptón:</b> Pon dos monedas visibles y dile a Dios: 'Es todo lo que tengo hoy'.
+        </div>
+      </div>
+    </div>
+
+    <div style='background:rgba(241,196,15,0.05); padding:20px; border-radius:12px; border: 1px dashed #f1c40f; margin-top:30px; font-style: italic;'>
+      <h3 style='margin-top:0; color:#f1c40f;'>🙏 Oración Final</h3>
+      <p style='color:#eee;'>'Padre, toma mis dos lepta. Perdón por dar desde mi abundancia cómoda. Que cuando suene la última trompeta, se oiga el eco de mi mano abierta. Amén.'</p>
+    </div>
+
+    <div style='background:#222; padding:15px; border-radius:10px; margin-top:20px; font-size:0.9rem;'>
+      <strong>💡 Dato del Mentor:</strong> La viuda estaba exenta por ley de dar. Jesús no la corrige por 'irresponsable'; la exalta porque en el Reino la lógica es dar hasta que duela, y luego un poco más.
+    </div>"
+}
 },
   {
     "id": "santiago-01",
