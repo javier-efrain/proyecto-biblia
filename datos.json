@@ -10,11 +10,11 @@
     "texto": "Jesús entra al Templo por segunda vez en su ministerio. El sistema de sacrificios se había vuelto un negocio de cambio de moneda injusto que excluía a los gentiles del área de oración."
   },
   "exegesis": {
-    "texto": "Jesús cita Isaías 56:7 ('Casa de oración') y Jeremías 7:11 ('Cueva de ladrones').",
+    "texto": "El análisis de los términos originales revela un contraste radical. Jesús no observa la cantidad, sino la proporción del sacrificio:",
     "versiculos": [
-      { "cita": "Mateo 21:12", "texto": "Y entró Jesús en el templo de Dios, y echó fuera a todos los que vendían y compraban..." },
-      { "cita": "Isaías 56:7", "texto": "Porque mi casa será llamada casa de oración para todos los pueblos." }
-    ]
+      { "cita": "Marcos 12:44", "texto": "Porque todos han echado de lo que les sobra (perísseuma); pero esta, de su pobreza echó todo lo que tenía, todo su sustento (bíos)." }
+    ],
+    "html_personalizado": "<div style='display:grid; gap:15px; margin-top:10px;'> <div style='background:#1e1e1e; padding:15px; border-radius:10px; border-left:4px solid #f1c40f;'> <h3 style='margin:0; color:#f1c40f;'>1. βίος (bíos) – Vida</h3> <p style='font-size:0.9rem; color:#ccc;'>No es dinero sobrante, es la <b>materia misma de la vida</b>. Dio su latido.</p> </div> <div style='background:#1e1e1e; padding:15px; border-radius:10px; border-left:4px solid #e74c3c;'> <h3 style='margin:0; color:#e74c3c;'>2. περίσσευμα (perísseuma) – Lo que sobra</h3> <p style='font-size:0.9rem; color:#ccc;'>Describe el <b>excedente</b>. Los ricos dieron lo que no les dolía perder.</p> </div> </div> <div style='background:rgba(241,196,15,0.1); padding:15px; border-radius:10px; border: 1px dashed #f1c40f; margin-top:20px;'><strong>💡 Dato del Mentor:</strong> Algunas monedas eran 'impuras' por sus inscripciones. Jesús ignora el ritualismo para exaltar la entrega total del corazón.</div>"
   },
   "aplicacion": {
     "texto": "Nuestra vida es el templo del Espíritu. ¿Qué 'negocios' o distracciones están ocupando el lugar que le pertenece a Dios?"
