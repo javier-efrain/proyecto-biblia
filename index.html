@@ -147,13 +147,46 @@
                     </div>
                 </div>
                 <div class="study-content">
-                    <div class="study-box"><h2>🏛️ Escenario</h2><p>${e.contexto.texto}</p></div>
-                    <div class="study-box"><h2>🔍 Exégesis</h2><p>${e.exegesis.texto}</p>
-                        ${e.exegesis.versiculos.map(v => `<div class="verse-box"><strong>${v.cita}:</strong> ${v.texto}</div>`).join('')}
-                    </div>
-                    <div class="study-box"><h2>💓 Aterrizaje</h2><p>${e.aplicacion ? e.aplicacion.texto : e.application.texto}</p></div>
-                    <center><button onclick="goHome()" style="background:var(--primary); border:none; padding:15px 40px; border-radius:30px; font-weight:bold; cursor:pointer;">VOLVER AL INICIO</button></center>
-                </div>
+    <div class="study-box">
+        <h2>🏛️ Escenario</h2>
+        <p>${e.contexto.texto}</p>
+    </div>
+
+    ${e.armonizacion ? `
+        <div class="study-box" style="border-left-color: #5dade2;">
+            <h2 style="color:#5dade2;">📖 Relato Unificado</h2>
+            <p style="font-style: italic; line-height: 1.6; font-size: 1.1rem;">${e.armonizacion.relato}</p>
+            <div style="font-size: 0.85rem; color: #888; border-top: 1px solid #333; padding-top: 10px; margin-top: 15px;">
+                ${e.armonizacion.fuentes.map(f => `<div style="margin-bottom:3px;">${f}</div>`).join('')}
+            </div>
+        </div>
+    ` : ''}
+
+    <div class="study-box">
+        <h2>🔍 Exégesis</h2>
+        <p>${e.exegesis.texto}</p>
+        ${e.exegesis.versiculos ? e.exegesis.versiculos.map(v => `
+            <div class="verse-box"><strong>${v.cita}:</strong> ${v.texto}</div>
+        `).join('') : ''}
+        
+        ${e.exegesis.html_personalizado ? `
+            <div style="margin-top:20px;">
+                ${e.exegesis.html_personalizado}
+            </div>
+        ` : ''}
+    </div>
+
+    <div class="study-box">
+        <h2>💓 Aterrizaje</h2>
+        <p>${e.aplicacion ? e.aplicacion.texto : (e.application ? e.application.texto : '')}</p>
+    </div>
+
+    <center>
+        <button onclick="goHome()" style="background:var(--primary); border:none; padding:15px 40px; border-radius:30px; font-weight:bold; cursor:pointer; margin-bottom: 50px;">
+            VOLVER AL INICIO
+        </button>
+    </center>
+</div>
             `;
             document.getElementById('home-screen').style.display = 'none';
             document.getElementById('view-study').style.display = 'block';
