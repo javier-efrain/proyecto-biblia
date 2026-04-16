@@ -1,13 +1,21 @@
 [
   {
-  "id": "jesus-limpieza-templo",
-  "libro": "Mateo / Marcos / Lucas",
+  "id": "ofrenda-viuda",
+  "libro": "Marcos / Lucas",
   "categoria": "Vida de Jesús",
-  "color": "#D32F2F",
-  "titulo": "La Purificación del Templo",
-  "hero_img": "https://placehold.co/1280x720/282828/D32F2F?text=Jesús+y+el+Látigo",
+  "color": "#f1c40f",
+  "titulo": "La Ofrenda de la Viuda",
+  "hero_img": "img/viuda_hero.jpg",
   "contexto": {
-    "texto": "Jesús entra al Templo por segunda vez en su ministerio. El sistema de sacrificios se había vuelto un negocio de cambio de moneda injusto que excluía a los gentiles del área de oración."
+    "texto": "<b>Lugar:</b> Atrio de las Mujeres (Templo).<br><b>Fecha:</b> Martes de Semana Santa.<br><b>Contexto:</b> Los pobres eran aplastados por impuestos y ofrendas presionadas socialmente. Jesús observa el corazón detrás de la moneda."
+  },
+    "armonizacion": {
+    "relato": "Estando Jesús sentado delante del arca del tesoro, levantando los ojos, observaba cómo la gente echaba dinero en el arca ¹. Y veía a muchos ricos que echaban mucho. En esto, vino una viuda pobre y echó dos blancas, que es un cuadrante ². Entonces, llamando a sus discípulos, les dijo: 'De cierto os digo que esta viuda pobre echó más que todos los que han echado en el arca; porque todos han echado de lo que les sobra; pero esta, de su pobreza echó todo lo que tenía, todo su sustento' ³.",
+    "fuentes": [
+      "¹ Mr 12:41 / Lc 21:1",
+      "² Mr 12:42 / Lc 21:2",
+      "³ Mr 12:43-44 / Lc 21:3-4"
+    ]
   },
   "exegesis": {
     "texto": "El análisis de los términos originales revela un contraste radical. Jesús no observa la cantidad, sino la proporción del sacrificio:",
